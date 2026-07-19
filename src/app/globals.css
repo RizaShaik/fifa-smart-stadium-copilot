@@ -1,26 +1,181 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-outfit);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* MD3 theme colors */
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+
+  --color-surface: var(--surface);
+  --color-on-surface: var(--on-surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+
+  /* shadcn-ui mappings */
+  --color-sidebar-ring: var(--primary);
+  --color-sidebar-border: var(--outline-variant);
+  --color-sidebar-accent-foreground: var(--on-primary-container);
+  --color-sidebar-accent: var(--primary-container);
+  --color-sidebar-primary-foreground: var(--on-primary);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-foreground: var(--on-surface);
+  --color-sidebar: var(--surface-container-low);
+  --color-ring: var(--primary);
+  --color-input: var(--outline-variant);
+  --color-border: var(--border);
+  --color-destructive: var(--error);
+  --color-destructive-foreground: var(--on-error);
+  --color-accent-foreground: var(--on-surface-variant);
+  --color-accent: var(--surface-container-high);
+  --color-muted-foreground: var(--on-surface-variant);
+  --color-muted: var(--surface-container);
+  --color-secondary-foreground: var(--on-secondary-container);
+  --color-secondary: var(--secondary-container);
+  --color-primary-foreground: var(--on-primary);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--on-surface);
+  --color-popover: var(--surface);
+  --color-card-foreground: var(--on-surface);
+  --color-card: var(--surface-container-low);
+
+  /* MD3 Elevation levels */
+  --shadow-elevation-1: 0px 1px 3px 1px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3);
+  --shadow-elevation-2: 0px 2px 6px 2px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3);
+  --shadow-elevation-3: 0px 1px 3px 0px rgba(0,0,0,0.3), 0px 4px 8px 3px rgba(0,0,0,0.15);
+  --shadow-elevation-4: 0px 2px 3px 0px rgba(0,0,0,0.3), 0px 6px 10px 4px rgba(0,0,0,0.15);
+  --shadow-elevation-5: 0px 4px 4px 0px rgba(0,0,0,0.3), 0px 8px 12px 6px rgba(0,0,0,0.15);
+
+  /* MD3 Radius scale */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #FCFDF6;
+  --foreground: #1A1C18;
+
+  --primary: #006C47;
+  --on-primary: #FFFFFF;
+  --primary-container: #8EF8C1;
+  --on-primary-container: #002112;
+
+  --secondary: #A37800;
+  --on-secondary: #FFFFFF;
+  --secondary-container: #FFDF96;
+  --on-secondary-container: #251A00;
+
+  --tertiary: #0061A6;
+  --on-tertiary: #FFFFFF;
+  --tertiary-container: #D2E4FF;
+  --on-tertiary-container: #001C37;
+
+  --error: #BA1A1A;
+  --on-error: #FFFFFF;
+  --error-container: #FFDAD6;
+  --on-error-container: #410002;
+
+  --surface: #FCFDF6;
+  --on-surface: #1A1C18;
+  --surface-variant: #DFE4D7;
+  --on-surface-variant: #43493F;
+
+  --outline: #73796E;
+  --outline-variant: #C3C8BC;
+
+  --surface-container-lowest: #FFFFFF;
+  --surface-container-low: #F6F7F0;
+  --surface-container: #F0F1EA;
+  --surface-container-high: #EAEBE4;
+  --surface-container-highest: #E4E6DE;
+
+  --border: var(--outline-variant);
+  --radius: 12px;
+}
+
+.dark {
+  --background: #121411;
+  --foreground: #E4E6DE;
+
+  --primary: #73DBA6;
+  --on-primary: #003822;
+  --primary-container: #005234;
+  --on-primary-container: #8EF8C1;
+
+  --secondary: #FFC005;
+  --on-secondary: #402D00;
+  --secondary-container: #5C4200;
+  --on-secondary-container: #FFDF96;
+
+  --tertiary: #A0C9FF;
+  --on-tertiary: #00325B;
+  --tertiary-container: #00497F;
+  --on-tertiary-container: #D2E4FF;
+
+  --error: #FFB4AB;
+  --on-error: #690005;
+  --error-container: #93000A;
+  --on-error-container: #FFDAD6;
+
+  --surface: #121411;
+  --on-surface: #E4E6DE;
+  --surface-variant: #43493F;
+  --on-surface-variant: #C3C8BC;
+
+  --outline: #8D9387;
+  --outline-variant: #43493F;
+
+  --surface-container-lowest: #0D0F0C;
+  --surface-container-low: #1A1C18;
+  --surface-container: #20211D;
+  --surface-container-high: #2A2B27;
+  --surface-container-highest: #353631;
+
+  --border: var(--outline-variant);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
 }
