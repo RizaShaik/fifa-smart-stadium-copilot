@@ -15,6 +15,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
+origins = [
+    "http://localhost:3000",     
+    "https://fifa-smart-stadium-copilot.vercel.app/"
+]
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
